@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday Bhai 🎉</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Caveat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1800&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            
+            background-color: rgba(31, 28, 44, 0.6);
+            background-blend-mode: overlay;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 700px;
+            transform: scale(1.11);
+            transform-origin: center center;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .scroll {
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.7;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: rgba(255,255,255,0.85); }
+        }
+
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid rgba(255,255,255,0.85);
+            animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .date {
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .animated {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1s; }
+        .delay-3 { animation-delay: 1.5s; }
+        .delay-4 { animation-delay: 2s; }
+        .delay-5 { animation-delay: 2.5s; }
+
+        .friend-photo {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .friend-photo img {
+            width: min(280px, 100%);
+            border: 3px solid rgba(255,255,255,0.8);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .friend-photo p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .tap-to-start {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 15px;
+            z-index: 9999;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body>
+    <div id="tapToStart" class="tap-to-start">Click for music</div>
+
+    <!-- Section 1 -->
+    <section>
+        <div class="content">
+            <h1 class="animated">Happy Birthday, Bhai 🎉</h1>
+            <div class="subtitle animated delay-1">Not by blood, but by heart.</div>
+            <div class="scroll animated delay-2">Scroll down ↓</div>
+            <div style="margin-top:20px;">
+                <audio id="birthdayAudio" src="3.mp3" preload="auto" autoplay loop playsinline muted style="display:none;"></audio>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section>
+        <div class="content">
+            <p class="animated delay-1">Some bonds don’t need a name, they just feel like home.</p>
+
+            <p class="date animated delay-2">19 April  the day someone came in this earth who never needed the title of “brother” to become one.</p>
+
+            <p class="animated delay-3">
+                You’ve been more than a best friend… you’ve been my support system,
+                my strength, and that one person I can always count on without thinking twice.
+            </p>
+
+            <p class="animated delay-4">
+                I may not have a real brother, but honestly, I never felt the need for one —
+                because I have you.
+            </p>
+
+            <p class="animated delay-5"><strong>Happy Birthday, bhai.<br>Stay the same, always.</strong></p>
+
+            <div class="friend-photo animated delay-5">
+                <img src="1.jpg" alt="Friend picture" />
+                <p>My friend, the best brother from another mother.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const audio = document.getElementById('birthdayAudio');
+        const tapToStart = document.getElementById('tapToStart');
+
+        const fadeIn = (audio, targetVolume, duration) => {
+            const startVolume = audio.volume;
+            const volumeStep = (targetVolume - startVolume) / (duration / 50);
+            const fadeInterval = setInterval(() => {
+                audio.volume += volumeStep;
+                if (audio.volume >= targetVolume) {
+                    audio.volume = targetVolume;
+                    clearInterval(fadeInterval);
+                }
+            }, 50);
+        };
+
+        const showTapHint = () => {
+            if (tapToStart) {
+                tapToStart.style.display = 'block';
+            }
+        };
+
+        const hideTapHint = () => {
+            if (tapToStart) {
+                tapToStart.style.display = 'none';
+            }
+        };
+
+        const startAudio = () => {
+            if (!audio) return;
+            audio.volume = 0;
+            audio.muted = true;
+
+            audio.play().then(() => {
+                console.log('Birthday music is playing.');
+                hideTapHint();
+                // Try to switch from muted autoplay to audible playback.
+                setTimeout(() => {
+                    audio.muted = false;
+                    fadeIn(audio, 0.7, 2000);
+                }, 300);
+            }).catch(err => {
+                console.log('Autoplay blocked (or interrupted):', err);
+                showTapHint();
+            });
+        };
+
+        const unlockAudioOnInteraction = () => {
+            startAudio();
+            hideTapHint();
+            document.removeEventListener('click', unlockAudioOnInteraction);
+            document.removeEventListener('touchstart', unlockAudioOnInteraction);
+            document.removeEventListener('keydown', unlockAudioOnInteraction);
+        };
+
+        window.addEventListener('load', () => {
+            startAudio();
+
+            
+            setInterval(() => {
+                if (audio.paused) {
+                    startAudio();
+                }
+            }, 2200);
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && audio.paused) {
+                    startAudio();
+                }
+            });
+
+            // Fallback for browsers that block autoplay with sound.
+            document.addEventListener('click', unlockAudioOnInteraction);
+            document.addEventListener('touchstart', unlockAudioOnInteraction);
+            document.addEventListener('keydown', unlockAudioOnInteraction);
+        });
+    </script>
+</body>
+</html>
